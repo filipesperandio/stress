@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-trap 'echo "exiting"; kill_process' INT TERM EXIT
-
 kill_process() {
   kill -9 $cpu_pid
   kill -9 $concurrent_request_pid
@@ -9,6 +7,7 @@ kill_process() {
   kill -9 $latency_pid
   ./net_flush_traffic_shape.sh
 }
+
 
 ./cpu_intensive.rb &
 cpu_pid=$!
@@ -21,3 +20,8 @@ io_pid=$!
 
 ./net_add_traffic_latency.sh 500ms &
 latency_pid=$!
+
+echo "press enter to abort"
+read
+kill_process
+
