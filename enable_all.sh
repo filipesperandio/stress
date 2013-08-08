@@ -22,6 +22,6 @@ io_pid=$!
 latency_pid=$!
 
 echo "press enter to abort"
-read
+read msg
 kill_process
 
