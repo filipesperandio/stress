@@ -18,8 +18,4 @@ http_load() {
 }
 
 http_load &
-pid=$!
-echo "press enter to abort"
-read
-killall $pid
 
